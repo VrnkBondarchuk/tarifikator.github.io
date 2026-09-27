@@ -27,10 +27,10 @@ h1 { color: var(--primary); font-size: 64px; font-weight: 800; line-height: 1; l
 .report { position: absolute; z-index: 2; left: 60.29%; top: 0; width: 39.71%; height: 100%; overflow: hidden; background: #f3f5f6; box-shadow: 0 -2px 40px rgba(0,0,0,.2); }
 .report img { position: absolute; left: -3.37%; top: 5.29%; width: 106.61%; height: auto; }
 .arrow { position: absolute; z-index: 3; left: 46.64%; top: 2.54%; }
-.print { position: absolute; z-index: 4; left: 88%; top: -4.7%; display: flex; align-items: center; justify-content: center; width: 11.55%; height: 8.59%; transform: rotate(18.67deg); background: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,.1); color: var(--black); font-size: 24px; font-weight: 500; line-height: 1.26; letter-spacing: -.48px; white-space: nowrap; }
+.print { position: absolute; z-index: 4; left: 88.78%; top: -1.48%; display: flex; align-items: center; justify-content: center; width: 11.55%; height: 8.59%; transform: rotate(18.67deg); background: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,.1); color: var(--black); font-size: 24px; font-weight: 500; line-height: 1.26; letter-spacing: -.48px; white-space: nowrap; }
 .accent-1, .accent-2 { position: absolute; z-index: 4; display: block; }
-.accent-1 { left: 88.84%; top: -8.98%; transform: rotate(125deg); }
-.accent-2 { left: 87.5%; top: -6.33%; transform: rotate(108deg); }
+.accent-1 { left: 89.02%; top: -8.72%; transform: rotate(125.38deg); }
+.accent-2 { left: 88.09%; top: -7.15%; transform: rotate(108.52deg); }
 .benefits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 583px; margin-top: 8px; font-size: 18px; line-height: 1.25; letter-spacing: -.18px; }
 .benefits h2 { color: var(--primary); font-size: inherit; font-weight: 700; line-height: inherit; }
 .benefits p { font-weight: 500; }
@@ -42,7 +42,9 @@ h1 { color: var(--primary); font-size: 64px; font-weight: 800; line-height: 1; l
   .media { margin-top: 64px; }
   .browser-toolbar .back, .browser-toolbar .forward, .browser-toolbar span { display: none; }
   .print { font-size: clamp(8px, 2.4vw, 24px); padding: .35em .75em; }
-  .arrow, .accent-1, .accent-2 { transform: scale(.65); transform-origin: top left; }
+  .arrow { transform: scale(.65); transform-origin: top left; }
+  .accent-1 { transform: rotate(125.38deg) scale(.65); }
+  .accent-2 { transform: rotate(108.52deg) scale(.65); }
   .benefits { font-size: 16px; }
 }
 @media (max-width: 460px) {
