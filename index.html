@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="hero">
+  <main>
+  <section class="hero">
     <header class="intro">
       <h1>Тарификатор</h1>
       <div class="description">
@@ -19,7 +20,7 @@
             <a href="#reports">Отчёты</a>
             <a href="#workload">Нагрузка</a>
           </div>
-          <a href="https://hourwork.itschool.ru/">Демо-кабинет</a>
+          <a href="#demo">Демо-кабинет</a>
         </nav>
       </div>
     </header>
@@ -51,6 +52,102 @@
         </div>
       </div>
     </section>
+  </section>
+
+  <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-title">
+    <div class="how-it-works__inner">
+      <h2 id="how-it-works-title">Как это работает</h2>
+      <p class="how-it-works__intro">«Тарификатор» помогает готовить отчёты, следить за&nbsp;педагогической нагрузкой и&nbsp;оперативно обновлять её&nbsp;у&nbsp;учителей в&nbsp;конкретных классах. Сервис считает нагрузку по&nbsp;предметам, курсам и&nbsp;внеурочной деятельности, учитывает вакантные часы и&nbsp;формирует ведомости для&nbsp;тарификации и&nbsp;комплектования.</p>
+
+      <div class="how-illustration" role="img" aria-label="Пример учебных планов в Тарификаторе">
+        <div class="how-browser" aria-hidden="true">
+          <div class="how-browser__toolbar">
+            <img class="how-browser__back" src="assets/how-back.svg" alt="">
+            <img class="how-browser__forward" src="assets/how-forward.svg" alt="">
+            <span>hourwork.itschool.ru</span>
+          </div>
+          <div class="how-browser__screen">
+            <div class="how-browser__frame">
+              <div class="how-shot how-shot--full"><img src="assets/how-plans.png" alt=""></div>
+              <div class="how-shot how-shot--first"><img src="assets/how-plans.png" alt=""></div>
+              <div class="how-shot how-shot--second"><img src="assets/how-plans.png" alt=""></div>
+              <div class="how-shot how-shot--third"><img src="assets/how-plans.png" alt=""></div>
+              <span class="how-browser__window-mask"></span>
+              <span class="how-browser__scrollbar-mask"></span>
+            </div>
+          </div>
+        </div>
+        <span class="how-play" aria-hidden="true">
+          <img src="assets/how-play-circle.svg" alt="">
+          <span class="how-play__symbol"><img src="assets/how-play-triangle.svg" alt=""></span>
+        </span>
+        <img class="how-portrait" src="assets/how-person.png" alt="" aria-hidden="true">
+      </div>
+    </div>
+  </section>
+  <section class="features" aria-labelledby="features-title">
+    <div class="features__inner">
+      <div class="features__intro">
+        <h2 id="features-title">Помогает сдать тарификацию без&nbsp;долгих перепроверок</h2>
+        <p>В&nbsp;«Тарификаторе» директор распределяет часы между&nbsp;учителями и&nbsp;классами. Он&nbsp;видит, кому не&nbsp;хватает часов до&nbsp;нормы, а&nbsp;где&nbsp;открывать вакансию. Сервис помогает всем, кто&nbsp;работает с&nbsp;нагрузкой: директору и&nbsp;заместителям&nbsp;— для&nbsp;подготовки к&nbsp;тарификации, кадровикам&nbsp;— для&nbsp;расчёта зарплат, диспетчеру по&nbsp;расписанию&nbsp;— для&nbsp;организации сетки уроков.</p>
+      </div>
+
+      <div class="features__list">
+        <article class="feature" id="workload">
+          <div class="feature__text">
+            <h3>Наглядная нагрузка по&nbsp;каждому преподавателю</h3>
+            <p>Сервис даёт контроль над&nbsp;нагрузкой преподавателей. По&nbsp;фамилии можно посмотреть нагрузку в&nbsp;конкретных классах, проверить классное руководство и&nbsp;заведование кабинетом.</p>
+            <p>«Тарификатор» показывает вакантные часы, отмечает педагогов с&nbsp;неполной ставкой, а&nbsp;при&nbsp;подборе предлагает специалистов из&nbsp;нужной предметной области. Сервис не&nbsp;ограничивает выбор, поэтому директор может учитывать предпочтения учителей по&nbsp;классам.</p>
+          </div>
+          <img class="feature__image" src="assets/feature-load.png" alt="Две карточки нагрузки преподавателя: 34 часа в норме и 46 часов выше нормы">
+        </article>
+
+        <article class="feature" id="plans">
+          <div class="feature__text">
+            <h3>Гибкие учебные планы</h3>
+            <p>«Тарификатор» собирает учебные планы для&nbsp;каждой параллели и&nbsp;рассчитывает общую нагрузку школы. Он&nbsp;учитывает количество классов и&nbsp;деление на&nbsp;подгруппы, например, для&nbsp;занятий по&nbsp;иностранному языку. Можно сформировать индивидуальные учебные планы для&nbsp;детей на&nbsp;домашнем обучении и&nbsp;классов коррекции. В&nbsp;результате директор видит, сколько часов приходится на&nbsp;каждый предмет, курс и&nbsp;внеурочную деятельность.</p>
+            <p>Утверждённые учебные планы можно скачать, чтобы&nbsp;распечатать или&nbsp;опубликовать на&nbsp;сайте школы. При&nbsp;любых изменениях достаточно скачать актуальную версию и&nbsp;заменить прежнюю.</p>
+          </div>
+          <div class="feature-plans">
+            <figure class="feature-plans__row feature-plans__row--first">
+              <img class="feature-plans__image" src="assets/feature-plan-example.png" alt="Пример учебного плана для вторых классов">
+              <figcaption>Пример учебного плана для&nbsp;вторых классов: сервис подвёл итоги и&nbsp;рассчитал фактическую нагрузку по&nbsp;классам</figcaption>
+            </figure>
+            <figure class="feature-plans__row feature-plans__row--second">
+              <figcaption>Нагрузка по&nbsp;всем учебным планам школы: можно открыть подытог по&nbsp;предметам в&nbsp;каждой параллели</figcaption>
+              <img class="feature-plans__image" src="assets/feature-plan-summary.png" alt="Итоги нагрузки по всем учебным планам">
+            </figure>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div class="feature__text">
+            <h3>Подсказки для&nbsp;быстрого распределения</h3>
+            <p>Сервис помогает перераспределить часы с&nbsp;учётом текущей нагрузки. Назначить часы можно двумя способами: отдельно в&nbsp;каждом классе или&nbsp;по&nbsp;предмету для&nbsp;всей параллели разом.</p>
+            <p>«Тарификатор» находит нераспределённые часы и&nbsp;классы без&nbsp;нагрузки, а&nbsp;при&nbsp;подборе предлагает специалистов из&nbsp;нужной предметной области. Сервис не&nbsp;ограничивает выбор, поэтому директор может учитывать предпочтения учителей по&nbsp;классам.</p>
+          </div>
+          <div class="feature-distribution">
+            <figure>
+              <figcaption>По&nbsp;предмету</figcaption>
+              <img class="distribution-preview" src="assets/feature-distribution-subject.png" alt="Массовое назначение преподавателей по предмету">
+            </figure>
+            <figure>
+              <figcaption>По классу</figcaption>
+              <img class="distribution-preview" src="assets/feature-distribution-class.png" alt="Выбор преподавателя для класса">
+            </figure>
+          </div>
+        </article>
+
+        <article class="feature" id="statements">
+          <div class="feature__text">
+            <h3>Сводная ведомость&nbsp;— в&nbsp;один клик</h3>
+            <p>Когда директору нужно будет согласовать нагрузку с&nbsp;учителем, сервис сформирует заявление со&nbsp;сводной ведомостью. «Тарификатор» автоматически укажет в&nbsp;документе ФИО педагога, предметы, классы и&nbsp;часы. Файл можно распечатать, подписать и&nbsp;передать в&nbsp;отдел кадров.</p>
+          </div>
+          <img class="feature__image" src="assets/feature-statements.jpg" alt="Три сводные ведомости, готовые к печати">
+        </article>
+      </div>
+    </div>
+  </section>
   </main>
 </body>
 </html>
