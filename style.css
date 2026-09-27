@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Onest:wght@500;700;800&display=swap");
+
+:root { --black: #2c3233; --primary: #bcc8ff; --primary_bold: #4361ee; --white: #f9fafc; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--black); color: var(--white); font-family: Onest, Arial, sans-serif; }
+.hero { width: min(100%, 1000px); margin: 0 auto; padding: 32px 24px 56px; }
+h1, h2, p { margin: 0; }
+h1 { color: var(--primary); font-size: 64px; font-weight: 800; line-height: 1; letter-spacing: -1.6px; }
+.intro { display: grid; gap: 14px; }
+.description { display: grid; gap: 16px; }
+.lead { max-width: 930px; font-size: 32px; font-weight: 700; line-height: 1.07; letter-spacing: -.48px; }
+.navigation { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 32px; color: var(--primary); font-size: 18px; font-weight: 500; line-height: 1.2; letter-spacing: -.36px; }
+.navigation-group { display: flex; flex-wrap: wrap; gap: 8px 14px; }
+.navigation a { color: inherit; font-feature-settings: "case" 1; text-decoration: underline; text-decoration-color: rgba(188, 200, 255, .2); text-decoration-skip-ink: none; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.navigation a:hover, .navigation a:focus-visible { text-decoration-color: currentColor; }
+.media { margin-top: 90px; }
+.illustration { position: relative; width: 100%; aspect-ratio: 952 / 512; }
+.browser { position: absolute; z-index: 1; left: 5.09%; top: 13.87%; width: 76.58%; height: 80.7%; overflow: hidden; border: 1px solid rgba(0,0,0,.1); border-radius: 6px; background: #e8ecf0; box-shadow: 0 26px 54px rgba(45,48,57,.09), 0 11px 23px rgba(45,48,57,.06), 0 6px 12px rgba(45,48,57,.05); }
+.browser-toolbar { position: relative; height: 6.37%; background: #e8ecf0; }
+.browser-toolbar .back, .browser-toolbar .forward { position: absolute; top: 50%; transform: translateY(-50%); display: block; }
+.browser-toolbar .back { left: 10px; }
+.browser-toolbar .forward { left: 28px; }
+.browser-toolbar span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); color: rgba(45,48,57,.7); font: 500 8.831px/9.51px "SF Pro Text", Arial, sans-serif; letter-spacing: -.1766px; white-space: nowrap; }
+.browser-screen { height: 93.63%; padding: 0 4px; overflow: hidden; }
+.browser-screen img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.report { position: absolute; z-index: 2; left: 60.29%; top: 0; width: 39.71%; height: 100%; overflow: hidden; background: #f3f5f6; box-shadow: 0 -2px 40px rgba(0,0,0,.2); }
+.report img { position: absolute; left: -3.37%; top: 5.29%; width: 106.61%; height: auto; }
+.arrow { position: absolute; z-index: 3; left: 46.64%; top: 2.54%; }
+.print { position: absolute; z-index: 4; left: 88%; top: -4.7%; display: flex; align-items: center; justify-content: center; width: 11.55%; height: 8.59%; transform: rotate(18.67deg); background: var(--primary); box-shadow: 0 2px 4px rgba(0,0,0,.1); color: var(--black); font-size: 24px; font-weight: 500; line-height: 1.26; letter-spacing: -.48px; white-space: nowrap; }
+.accent-1, .accent-2 { position: absolute; z-index: 4; display: block; }
+.accent-1 { left: 88.84%; top: -8.98%; transform: rotate(125deg); }
+.accent-2 { left: 87.5%; top: -6.33%; transform: rotate(108deg); }
+.benefits { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; max-width: 583px; margin-top: 8px; font-size: 18px; line-height: 1.25; letter-spacing: -.18px; }
+.benefits h2 { color: var(--primary); font-size: inherit; font-weight: 700; line-height: inherit; }
+.benefits p { font-weight: 500; }
+@media (max-width: 700px) {
+  .hero { padding: 28px 20px 44px; }
+  h1 { font-size: clamp(40px, 9vw, 64px); }
+  .lead { font-size: clamp(23px, 4.5vw, 32px); }
+  .navigation { gap: 12px 24px; font-size: 16px; }
+  .media { margin-top: 64px; }
+  .browser-toolbar .back, .browser-toolbar .forward, .browser-toolbar span { display: none; }
+  .print { font-size: clamp(8px, 2.4vw, 24px); padding: .35em .75em; }
+  .arrow, .accent-1, .accent-2 { transform: scale(.65); transform-origin: top left; }
+  .benefits { font-size: 16px; }
+}
+@media (max-width: 460px) {
+  .benefits { grid-template-columns: 1fr; gap: 14px; }
+  .arrow, .accent-1, .accent-2 { display: none; }
+}
