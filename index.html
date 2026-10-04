@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#232829">
     <title>Тарификатор — онлайн-программа для управления нагрузкой</title>
     <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="css/styles.css?v=30">
+    <link rel="stylesheet" href="css/styles.css?v=35">
   </head>
   <body>
     <main>
@@ -33,7 +33,7 @@
               </div>
               <div class="hero__report-visual">
                 <div class="hero__report-image">
-                  <img src="assets/summary-report.png" width="1560" height="2304" alt="Сводная ведомость с распределением часов по предметам и классам">
+                  <img src="assets/summary-statement-27-hours-ivanov.png" width="1560" height="2304" alt="Сводная ведомость с распределением часов по предметам и классам">
                 </div>
                 <div class="hero__print-callout" aria-hidden="true">
                   <img class="hero__arrowhead" src="assets/print-callout-arrowhead.svg" alt="">
@@ -160,13 +160,13 @@
           </div>
           <figure class="statements__illustration" aria-label="Три сводные ведомости для согласования нагрузки">
             <div class="statements__sheet-position statements__sheet-position--first">
-              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt="Сводная ведомость с предметами, классами и часами"></div>
+              <div class="statements__sheet"><img src="assets/summary-statement-22-hours-petrova.png" width="1560" height="2304" alt="Сводная ведомость Петровой Анны Александровны на 22 часа"></div>
             </div>
             <div class="statements__sheet-position statements__sheet-position--second" aria-hidden="true">
-              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt=""></div>
+              <div class="statements__sheet"><img src="assets/summary-statement-27-hours-ivanov.png" width="1560" height="2304" alt=""></div>
             </div>
             <div class="statements__sheet-position statements__sheet-position--third" aria-hidden="true">
-              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt=""></div>
+              <div class="statements__sheet"><img src="assets/summary-statement-20-hours-smirnov.png" width="1560" height="2304" alt=""></div>
             </div>
             <div class="statements__print" aria-hidden="true">
               <span class="statements__print-arrowhead"><span><img src="assets/statement-print-arrowhead.svg" alt=""></span></span>
@@ -250,7 +250,10 @@
                 <img src="assets/olga-dobychina-portrait.png?v=2" width="283" height="283" alt="Ольга Добычина">
                 <figcaption><strong>Ольга Добычина</strong><span>МАОУ-СОШ №&nbsp;25, Екатеринбург</span></figcaption>
               </figure>
-              <p class="testimonial__highlight">Учебные планы для&nbsp;115&nbsp;классов я&nbsp;привязала за&nbsp;четыре минуты</p>
+              <div class="testimonial__pullquote">
+                <img class="testimonial__quote-mark" src="assets/testimonial-quote-marks.svg" width="34" height="27" alt="" aria-hidden="true">
+                <p class="testimonial__highlight">Учебные планы для&nbsp;115&nbsp;классов я&nbsp;привязала за&nbsp;четыре минуты</p>
+              </div>
             </div>
             <blockquote class="testimonial__quote">
               <p>У&nbsp;нас&nbsp;115&nbsp;классов и&nbsp;около 200&nbsp;учителей, и&nbsp;я&nbsp;сама распределяю нагрузку. Раньше вела её&nbsp;в&nbsp;Экселе, но&nbsp;к&nbsp;январю таблица расходилась с&nbsp;реальностью: часы передавали на&nbsp;словах, поэтому не&nbsp;все&nbsp;узнавали об&nbsp;изменениях вовремя. Однажды из-за&nbsp;этого учителю некорректно начислили зарплату&nbsp;— мы&nbsp;разобрались и&nbsp;доплатили, но&nbsp;осадок остался.</p>
@@ -310,6 +313,17 @@
                   <p>Ссылку на демо отправим почтой. Если захотите проверить сервис на данных своей школы, заключим договор и настроим бесплатный доступ на месяц.</p>
                 </div>
               </div>
+              <form class="demo__form" aria-label="Получить доступ к демо-кабинету">
+                <div class="demo__field">
+                  <label class="demo__field-label" for="demo-email">Эл. почта</label>
+                  <input class="demo__email" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email">
+                  <button class="demo__button" type="button">Получить доступ</button>
+                </div>
+                <div class="demo__consents">
+                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent"><span>Соглашаюсь <u>на обработку персональных данных</u> в соответствии <u>с политикой конфиденциальности</u></span></label>
+                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Соглашаюсь получать <u>рекламу</u> на почту</span></label>
+                </div>
+              </form>
             </div>
             <img class="demo__image" src="assets/demo-school-dashboard.png" width="1804" height="875" alt="Демо-кабинет школы № 25: панель с данными о педагогах, классах и нагрузке">
           </div>
