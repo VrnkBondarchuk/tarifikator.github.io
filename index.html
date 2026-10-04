@@ -1,153 +1,253 @@
 <!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Тарификатор</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <main>
-  <section class="hero">
-    <header class="intro">
-      <h1>Тарификатор</h1>
-      <div class="description">
-        <p class="lead">Онлайн-программа, которая помогает директорам распределять нагрузку между&nbsp;педагогами и&nbsp;готовить&nbsp;финансовые отчёты для&nbsp;бухгалтерии</p>
-        <nav class="navigation" aria-label="Разделы сайта">
-          <div class="navigation-group">
-            <a href="#plans">Учебные планы</a>
-            <a href="#statements">Сводные ведомости</a>
-            <a href="#reports">Отчёты</a>
-            <a href="#workload">Нагрузка</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#232829">
+    <title>Тарификатор — онлайн-программа для управления нагрузкой</title>
+    <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="container hero__inner">
+          <div class="hero__header">
+            <div class="hero__copy">
+              <div class="hero__intro">
+                <h1 class="hero__title" id="hero-title">Тарификатор <span class="hero__beta">Бета</span></h1>
+                <p class="lead">Онлайн-программа, которая помогает директорам распределять нагрузку между&nbsp;педагогами и&nbsp;готовить&nbsp;финансовые отчёты для&nbsp;бухгалтерии</p>
+              </div>
+              <button class="hero__cta" type="button">Попробовать бесплатно</button>
+            </div>
           </div>
-          <a href="#demo">Демо-кабинет</a>
-        </nav>
-      </div>
-    </header>
 
-    <section class="media" aria-label="Примеры интерфейса Тарификатора">
-      <div class="illustration" aria-hidden="true">
-        <div class="browser">
-          <div class="browser-toolbar">
-            <img class="back" src="assets/back-icon.svg" alt="">
-            <img class="forward" src="assets/forward-icon.svg" alt="">
-            <span>hourwork.itschool.ru</span>
-          </div>
-          <div class="browser-screen"><img src="assets/dashboard.png" alt=""></div>
-        </div>
-        <div class="report"><img src="assets/report.png" alt=""></div>
-        <img class="arrow" src="assets/arrow.svg" alt="">
-        <img class="accent-1" src="assets/accent-1.svg" alt="">
-        <img class="accent-2" src="assets/accent-2.svg" alt="">
-        <span class="print">Печать</span>
-      </div>
-      <div class="benefits">
-        <div>
-          <h2>Перед учебным годом</h2>
-          <p>Отображает нераспределённые часы по&nbsp;классам и&nbsp;подводит итог по&nbsp;учебным планам</p>
-        </div>
-        <div>
-          <h2>В течение года</h2>
-          <p>Упрощает подготовку отчётов и&nbsp;обновляет нагрузку без&nbsp;ручных перерасчётов</p>
-        </div>
-      </div>
-    </section>
-  </section>
-
-  <section class="how-it-works" id="how-it-works" aria-labelledby="how-it-works-title">
-    <div class="how-it-works__inner">
-      <h2 id="how-it-works-title">Как это работает</h2>
-      <p class="how-it-works__intro">«Тарификатор» помогает готовить отчёты, следить за&nbsp;педагогической нагрузкой и&nbsp;оперативно обновлять её&nbsp;у&nbsp;учителей в&nbsp;конкретных классах. Сервис считает нагрузку по&nbsp;предметам, курсам и&nbsp;внеурочной деятельности, учитывает вакантные часы и&nbsp;формирует ведомости для&nbsp;тарификации и&nbsp;комплектования.</p>
-
-      <div class="how-illustration" role="img" aria-label="Пример учебных планов в Тарификаторе">
-        <div class="how-browser" aria-hidden="true">
-          <div class="how-browser__toolbar">
-            <img class="how-browser__back" src="assets/how-back.svg" alt="">
-            <img class="how-browser__forward" src="assets/how-forward.svg" alt="">
-            <span>hourwork.itschool.ru</span>
-          </div>
-          <div class="how-browser__screen">
-            <div class="how-browser__frame">
-              <div class="how-shot how-shot--full"><img src="assets/how-plans.png" alt=""></div>
-              <div class="how-shot how-shot--first"><img src="assets/how-plans.png" alt=""></div>
-              <div class="how-shot how-shot--second"><img src="assets/how-plans.png" alt=""></div>
-              <div class="how-shot how-shot--third"><img src="assets/how-plans.png" alt=""></div>
-              <span class="how-browser__window-mask"></span>
-              <span class="how-browser__scrollbar-mask"></span>
+          <div class="hero__showcase">
+            <div class="hero__visuals">
+              <img class="hero__preview-arrow" src="assets/dashboard-to-report-arrow.svg" alt="" aria-hidden="true">
+              <div class="hero__workload-visual">
+                <div class="hero__workload-card">
+                  <div class="hero__browser-bar" aria-hidden="true"><span>hourwork.itschool.ru</span></div>
+                  <img class="hero__workload-image" src="assets/workload-dashboard-content.png" width="2360" height="1329" alt="Экран Тарификатора со сводкой нагрузки по учителям, классам и предметам">
+                </div>
+              </div>
+              <div class="hero__report-visual">
+                <div class="hero__report-image">
+                  <img src="assets/summary-report.png" width="1560" height="2304" alt="Сводная ведомость с распределением часов по предметам и классам">
+                </div>
+                <div class="hero__print-callout" aria-hidden="true">
+                  <img class="hero__arrowhead" src="assets/print-callout-arrowhead.svg" alt="">
+                  <img class="hero__arrow-stem" src="assets/print-callout-arrow-stem.svg" alt="">
+                  <span class="hero__print-label">Печать</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero__benefits">
+              <p class="hero__benefit-copy hero__benefit-copy--workload">
+                <strong>Для контроля нагрузки</strong>
+                <span>Подводит итог по учебным планам и отображает нераспределённые часы по классам</span>
+              </p>
+              <p class="hero__benefit-copy hero__benefit-copy--report">
+                <strong>Для отчётности</strong>
+                <span>Хранит данные три года и обновляет нагрузку без ручных перерасчётов</span>
+              </p>
             </div>
           </div>
         </div>
-        <span class="how-play" aria-hidden="true">
-          <img src="assets/how-play-circle.svg" alt="">
-          <span class="how-play__symbol"><img src="assets/how-play-triangle.svg" alt=""></span>
-        </span>
-        <img class="how-portrait" src="assets/how-person.png" alt="" aria-hidden="true">
-      </div>
-    </div>
-  </section>
-  <section class="features" aria-labelledby="features-title">
-    <div class="features__inner">
-      <div class="features__intro">
-        <h2 id="features-title">Помогает сдать тарификацию без&nbsp;долгих перепроверок</h2>
-        <p>В&nbsp;«Тарификаторе» директор распределяет часы между&nbsp;учителями и&nbsp;классами. Он&nbsp;видит, кому не&nbsp;хватает часов до&nbsp;нормы, а&nbsp;где&nbsp;открывать вакансию. Сервис помогает всем, кто&nbsp;работает с&nbsp;нагрузкой: директору и&nbsp;заместителям&nbsp;— для&nbsp;подготовки к&nbsp;тарификации, кадровикам&nbsp;— для&nbsp;расчёта зарплат, диспетчеру по&nbsp;расписанию&nbsp;— для&nbsp;организации сетки уроков.</p>
-      </div>
+      </section>
 
-      <div class="features__list">
-        <article class="feature" id="workload">
-          <div class="feature__text">
-            <h3>Наглядная нагрузка по&nbsp;каждому преподавателю</h3>
-            <p>Сервис даёт контроль над&nbsp;нагрузкой преподавателей. По&nbsp;фамилии можно посмотреть нагрузку в&nbsp;конкретных классах, проверить классное руководство и&nbsp;заведование кабинетом.</p>
-            <p>«Тарификатор» показывает вакантные часы, отмечает педагогов с&nbsp;неполной ставкой, а&nbsp;при&nbsp;подборе предлагает специалистов из&nbsp;нужной предметной области. Сервис не&nbsp;ограничивает выбор, поэтому директор может учитывать предпочтения учителей по&nbsp;классам.</p>
-          </div>
-          <img class="feature__image" src="assets/feature-load.png" alt="Две карточки нагрузки преподавателя: 34 часа в норме и 46 часов выше нормы">
-        </article>
+      <section class="overview" aria-label="О Тарификаторе">
+        <div class="container overview__inner">
+          <p class="lead">«Тарификатор» — сервис для&nbsp;управления нагрузкой в&nbsp;школе. Он помогает сдавать тарификацию без&nbsp;перепроверок и&nbsp;обновлять нагрузку во&nbsp;время учебного года. Сотни педагогов, классов и&nbsp;предметов — всё&nbsp;в&nbsp;одном месте:</p>
+        </div>
+      </section>
 
-        <article class="feature" id="plans">
-          <div class="feature__text">
-            <h3>Гибкие учебные планы</h3>
-            <p>«Тарификатор» собирает учебные планы для&nbsp;каждой параллели и&nbsp;рассчитывает общую нагрузку школы. Он&nbsp;учитывает количество классов и&nbsp;деление на&nbsp;подгруппы, например, для&nbsp;занятий по&nbsp;иностранному языку. Можно сформировать индивидуальные учебные планы для&nbsp;детей на&nbsp;домашнем обучении и&nbsp;классов коррекции. В&nbsp;результате директор видит, сколько часов приходится на&nbsp;каждый предмет, курс и&nbsp;внеурочную деятельность.</p>
-            <p>Утверждённые учебные планы можно скачать, чтобы&nbsp;распечатать или&nbsp;опубликовать на&nbsp;сайте школы. При&nbsp;любых изменениях достаточно скачать актуальную версию и&nbsp;заменить прежнюю.</p>
+      <nav class="section-nav" aria-label="Разделы страницы">
+        <div class="container section-nav__inner">
+          <div class="section-nav__track">
+            <span class="section-nav__indicator" aria-hidden="true"></span>
+            <a class="section-nav__link" href="#workload">Нагрузка</a>
+            <a class="section-nav__link" href="#study-plans">Учебные планы</a>
+            <a class="section-nav__link" href="#matching-hints">Подсказки при подборе</a>
+            <a class="section-nav__link" href="#statements">Ведомости</a>
+            <a class="section-nav__link" href="#updates">Обновления</a>
+            <a class="section-nav__link" href="#archive">Архив</a>
+            <a class="section-nav__link" href="#reports">Отчёты</a>
           </div>
-          <div class="feature-plans">
-            <figure class="feature-plans__row feature-plans__row--first">
-              <img class="feature-plans__image" src="assets/feature-plan-example.png" alt="Пример учебного плана для вторых классов">
-              <figcaption>Пример учебного плана для&nbsp;вторых классов: сервис подвёл итоги и&nbsp;рассчитал фактическую нагрузку по&nbsp;классам</figcaption>
-            </figure>
-            <figure class="feature-plans__row feature-plans__row--second">
-              <figcaption>Нагрузка по&nbsp;всем учебным планам школы: можно открыть подытог по&nbsp;предметам в&nbsp;каждой параллели</figcaption>
-              <img class="feature-plans__image" src="assets/feature-plan-summary.png" alt="Итоги нагрузки по всем учебным планам">
-            </figure>
-          </div>
-        </article>
+        </div>
+      </nav>
 
-        <article class="feature">
-          <div class="feature__text">
-            <h3>Подсказки для&nbsp;быстрого распределения</h3>
-            <p>Сервис помогает перераспределить часы с&nbsp;учётом текущей нагрузки. Назначить часы можно двумя способами: отдельно в&nbsp;каждом классе или&nbsp;по&nbsp;предмету для&nbsp;всей параллели разом.</p>
-            <p>«Тарификатор» находит нераспределённые часы и&nbsp;классы без&nbsp;нагрузки, а&nbsp;при&nbsp;подборе предлагает специалистов из&nbsp;нужной предметной области. Сервис не&nbsp;ограничивает выбор, поэтому директор может учитывать предпочтения учителей по&nbsp;классам.</p>
-          </div>
-          <div class="feature-distribution">
-            <figure>
-              <figcaption>По&nbsp;предмету</figcaption>
-              <img class="distribution-preview" src="assets/feature-distribution-subject.png" alt="Массовое назначение преподавателей по предмету">
-            </figure>
-            <figure>
-              <figcaption>По классу</figcaption>
-              <img class="distribution-preview" src="assets/feature-distribution-class.png" alt="Выбор преподавателя для класса">
-            </figure>
-          </div>
-        </article>
+      <section class="overview-media" aria-label="Пример работы сервиса">
+        <figure class="container overview-media__inner">
+          <img class="overview-media__preview" src="assets/study-plans-video-preview.png" width="1904" height="1030" alt="Превью демонстрации раздела «Учебные планы»">
+          <figcaption class="caption overview-media__caption">Пример работы сервиса: как директору назначить нагрузку и выгрузить данные для отчёта</figcaption>
+        </figure>
+      </section>
 
-        <article class="feature" id="statements">
-          <div class="feature__text">
-            <h3>Сводная ведомость&nbsp;— в&nbsp;один клик</h3>
-            <p>Когда директору нужно будет согласовать нагрузку с&nbsp;учителем, сервис сформирует заявление со&nbsp;сводной ведомостью. «Тарификатор» автоматически укажет в&nbsp;документе ФИО педагога, предметы, классы и&nbsp;часы. Файл можно распечатать, подписать и&nbsp;передать в&nbsp;отдел кадров.</p>
+      <section class="workload" id="workload" aria-labelledby="workload-title">
+        <div class="container feature__inner">
+          <div class="feature__copy">
+            <h2 class="section-heading" id="workload-title">Наглядная нагрузка по&nbsp;каждому педагогу</h2>
+            <p class="section-copy">Сервис отражает нагрузку всех преподавателей. По&nbsp;фамилии можно посмотреть назначения в&nbsp;отдельных классах, проверить классное руководство и&nbsp;заведование кабинетом. Программа показывает вакантные часы и&nbsp;отмечает педагогов с&nbsp;неполной ставкой.</p>
           </div>
-          <img class="feature__image" src="assets/feature-statements.jpg" alt="Три сводные ведомости, готовые к печати">
-        </article>
-      </div>
-    </div>
-  </section>
-  </main>
-</body>
+          <figure class="workload__illustration">
+            <img class="workload__card workload__card--kovalev" src="assets/teacher-workload-card-nikolay-kovalev.png" width="830" height="1226" alt="Карточка нагрузки Николая Ковалёва: 34 часа">
+            <img class="workload__card workload__card--tikhonova" src="assets/teacher-workload-card-viktoriya-tikhonova.png" width="830" height="1228" alt="Карточка нагрузки Виктории Тихоновой: 46 часов, из них 10 вакантных">
+            <figcaption class="workload__annotation">
+              <span class="caption workload__annotation-text">Подсветит цветом, если нагрузка<br>выше нормы</span>
+              <img class="workload__annotation-arrow" src="assets/teacher-workload-overload-annotation-arrow.svg" alt="" aria-hidden="true">
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="study-plans" id="study-plans" aria-labelledby="study-plans-title">
+        <div class="container feature__inner">
+          <div class="feature__copy">
+            <h2 class="section-heading" id="study-plans-title">Гибкие учебные планы</h2>
+            <div class="feature__paragraphs">
+              <p class="section-copy">«Тарификатор» собирает все&nbsp;учебные планы в&nbsp;одном месте. Он&nbsp;автоматически считает учебную нагрузку для&nbsp;школы: фиксирует количество классов и&nbsp;деление их&nbsp;на&nbsp;подгруппы. Можно сформировать индивидуальные учебные планы для&nbsp;детей на&nbsp;домашнем обучении и&nbsp;классов коррекции. В&nbsp;результате директор видит, сколько часов приходится на&nbsp;каждый предмет, курс и&nbsp;внеурочную деятельность.</p>
+              <p class="section-copy">Утверждённые учебные планы можно скачать, чтобы&nbsp;распечатать или&nbsp;опубликовать на&nbsp;сайте школы. При&nbsp;любых изменениях сервис пересчитает итоги&nbsp;— останется скачать актуальный файл.</p>
+            </div>
+          </div>
+          <div class="study-plans__examples">
+            <figure class="study-plans__example study-plans__example--image-first">
+              <figcaption class="caption study-plans__caption">Пример учебного плана для&nbsp;первых классов: сервис подвёл итоги и&nbsp;рассчитал фактическую нагрузку по&nbsp;классам</figcaption>
+              <img class="study-plans__image" src="assets/first-grade-curriculum-plan.png" width="1496" height="927" alt="Учебный план первого класса с предметами, часами и итогами нагрузки">
+            </figure>
+            <figure class="study-plans__example">
+              <figcaption class="caption study-plans__caption">Нагрузка по&nbsp;всем учебным планам школы: можно открыть подытог по&nbsp;предметам в&nbsp;каждой параллели</figcaption>
+              <img class="study-plans__image" src="assets/curriculum-plans-summary.png" width="2326" height="1167" alt="Итоги нагрузки по всем учебным планам школы и параллелям">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="matching-hints" id="matching-hints" aria-labelledby="matching-hints-title">
+        <div class="container feature__inner">
+          <div class="feature__copy">
+            <h2 class="section-heading" id="matching-hints-title">Подсказки для&nbsp;быстрого распределения</h2>
+            <div class="feature__paragraphs">
+              <p class="section-copy">Сервис помогает перераспределить часы с&nbsp;учётом текущей нагрузки. Назначить часы можно двумя способами: по&nbsp;предмету для&nbsp;всей параллели и&nbsp;отдельно в&nbsp;каждом классе.</p>
+              <p class="section-copy">«Тарификатор» находит нераспределённые часы и&nbsp;классы без&nbsp;нагрузки, а&nbsp;при&nbsp;подборе предлагает специалистов из&nbsp;нужной предметной области. Сервис не&nbsp;ограничивает выбор, поэтому директор может учитывать предпочтения педагогов по&nbsp;классам.</p>
+            </div>
+          </div>
+          <div class="matching-hints__examples">
+            <figure class="matching-hints__example">
+              <figcaption class="matching-hints__label">По&nbsp;предмету</figcaption>
+              <div class="matching-hints__panel">
+                <img class="matching-hints__image matching-hints__image--subject" src="assets/subject-selection-panel.png" width="764" height="1027" alt="Выбор классов для массового назначения нагрузки по биологии">
+                <img class="matching-hints__divider" src="assets/selection-panel-divider.png" width="472" height="22" alt="" aria-hidden="true">
+              </div>
+            </figure>
+            <figure class="matching-hints__example">
+              <figcaption class="matching-hints__label">По&nbsp;классу</figcaption>
+              <div class="matching-hints__panel">
+                <img class="matching-hints__image matching-hints__image--class" src="assets/class-selection-panel.png" width="792" height="826" alt="Подбор педагога для уроков биологии в 7Б классе">
+                <img class="matching-hints__divider" src="assets/selection-panel-divider.png" width="472" height="22" alt="" aria-hidden="true">
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="statements" id="statements" aria-labelledby="statements-title">
+        <div class="container feature__inner">
+          <div class="feature__copy">
+            <h2 class="section-heading" id="statements-title">Сводная ведомость&nbsp;— в&nbsp;один клик</h2>
+            <p class="section-copy">Когда директору нужно согласовать нагрузку с&nbsp;учителем, сервис формирует заявление со&nbsp;сводной ведомостью. В&nbsp;документе будут все&nbsp;данные для&nbsp;отдела кадров: ФИО&nbsp;педагога, предметы, классы и&nbsp;часы.</p>
+          </div>
+          <figure class="statements__illustration" aria-label="Три сводные ведомости для согласования нагрузки">
+            <div class="statements__sheet-position statements__sheet-position--first">
+              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt="Сводная ведомость с предметами, классами и часами"></div>
+            </div>
+            <div class="statements__sheet-position statements__sheet-position--second" aria-hidden="true">
+              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt=""></div>
+            </div>
+            <div class="statements__sheet-position statements__sheet-position--third" aria-hidden="true">
+              <div class="statements__sheet"><img src="assets/summary-report.png" width="1560" height="2304" alt=""></div>
+            </div>
+            <div class="statements__print" aria-hidden="true">
+              <span class="statements__print-arrowhead"><span><img src="assets/statement-print-arrowhead.svg" alt=""></span></span>
+              <span class="statements__print-stem"><span><img src="assets/statement-print-stem.svg" alt=""></span></span>
+              <span class="statements__print-label"><span>Печать</span></span>
+            </div>
+          </figure>
+        </div>
+      </section>
+    </main>
+    <script>
+      const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!reduceMotion) {
+        document.documentElement.style.scrollBehavior = 'smooth';
+      }
+
+      const sectionNav = document.querySelector('.section-nav');
+      const navTrack = document.querySelector('.section-nav__track');
+      const navIndicator = document.querySelector('.section-nav__indicator');
+      const navigationTargets = [...document.querySelectorAll('.section-nav__link')]
+        .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+        .filter(item => item.section);
+      let activeLink = null;
+      let clickedLink = null;
+
+      function positionIndicator() {
+        if (!activeLink) {
+          navTrack.classList.remove('has-active');
+          return;
+        }
+
+        navIndicator.style.width = `${activeLink.offsetWidth}px`;
+        navIndicator.style.height = `${activeLink.offsetHeight}px`;
+        navIndicator.style.transform = `translateX(${activeLink.offsetLeft}px)`;
+        navTrack.classList.add('has-active');
+      }
+
+      function setActiveLink(link) {
+        if (activeLink === link) return;
+        activeLink = link;
+        for (const item of navigationTargets) {
+          if (item.link === link) item.link.setAttribute('aria-current', 'location');
+          else item.link.removeAttribute('aria-current');
+        }
+        positionIndicator();
+      }
+
+      function updateActiveSection() {
+        const threshold = 140;
+        let active = null;
+
+        sectionNav.classList.toggle('is-stuck', sectionNav.getBoundingClientRect().top <= 0.5);
+        if (clickedLink) return;
+
+        for (const item of navigationTargets) {
+          if (item.section.getBoundingClientRect().top <= threshold &&
+              (!active || item.section.offsetTop > active.section.offsetTop)) {
+            active = item;
+          }
+        }
+
+        setActiveLink(active?.link ?? null);
+      }
+
+      for (const { link } of navigationTargets) {
+        link.addEventListener('click', () => {
+          clickedLink = link;
+          setActiveLink(link);
+        });
+      }
+      addEventListener('scrollend', () => {
+        clickedLink = null;
+        updateActiveSection();
+      });
+      addEventListener('scroll', updateActiveSection, { passive: true });
+      addEventListener('resize', () => {
+        updateActiveSection();
+        positionIndicator();
+      });
+      updateActiveSection();
+      document.fonts.ready.then(positionIndicator);
+      if (!reduceMotion) requestAnimationFrame(() => navIndicator.classList.add('is-ready'));
+    </script>
+  </body>
 </html>
