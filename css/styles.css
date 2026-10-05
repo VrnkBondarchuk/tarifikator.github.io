@@ -1057,12 +1057,16 @@ a:hover {
 }
 
 @media (max-width: 800px) {
+  .page-content {
+    padding-inline: 16px;
+  }
+
   .overview__inner {
     padding-top: 20px;
   }
 
   .hero__inner {
-    padding: 32px clamp(16px, calc(4px + 2vw), 20px) 48px;
+    padding: 32px 16px 48px;
   }
 
   .hero__benefit-copy {
