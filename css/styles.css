@@ -1103,7 +1103,7 @@ a:hover {
   }
 
   .hero__title {
-    font-size: calc(var(--hero-title-size) * 0.9);
+    font-size: max(40px, var(--hero-title-size));
   }
 
   .page-content {
