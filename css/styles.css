@@ -1209,12 +1209,19 @@ a:hover {
     aspect-ratio: 1;
   }
 
+  .demo__panel {
+    padding-inline: 16px;
+    padding-bottom: calc((100vw - 32px) * 0.68 + 16px);
+  }
+
   .demo__image {
-    position: relative;
+    position: absolute;
     top: auto;
     left: auto;
-    width: calc(100% + 48px);
-    margin: 32px -24px -48px;
+    right: -60%;
+    bottom: -32px;
+    width: 140%;
+    margin: 0;
   }
 
   .site-footer__top {
@@ -1263,7 +1270,4 @@ a:hover {
     font-size: 20px;
   }
 
-  .demo__image {
-    width: 180%;
-  }
 }
