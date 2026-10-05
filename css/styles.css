@@ -1120,10 +1120,13 @@ a:hover {
   }
 
   .updates__visual {
+    flex: none;
     width: 100%;
   }
 
   .updates__caption {
+    flex: none;
+    width: 100%;
     max-width: 400px;
   }
 
