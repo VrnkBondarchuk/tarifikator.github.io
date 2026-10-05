@@ -1204,7 +1204,12 @@ a:hover {
   }
 
   .testimonial__profile {
+    order: 1;
     max-width: 283px;
+  }
+
+  .testimonial__pullquote {
+    order: -1;
   }
 
   .testimonial__highlight {
