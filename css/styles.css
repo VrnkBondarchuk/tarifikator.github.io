@@ -1058,6 +1058,41 @@ a:hover {
 }
 
 @media (max-width: 800px) {
+  .section-nav {
+    position: static;
+  }
+
+  .section-nav__inner {
+    overflow: visible;
+  }
+
+  .section-nav__track {
+    flex: 1;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    overflow: visible;
+    background: transparent;
+  }
+
+  .section-nav__indicator {
+    display: none;
+  }
+
+  .section-nav__link {
+    border-radius: 4px;
+    background: var(--color-nav-bg);
+    text-decoration: none;
+  }
+
+  .section-nav__link + .section-nav__link {
+    border-left: 0;
+  }
+
+  .section-nav__link[aria-current="location"] {
+    background: var(--color-primary-bold);
+  }
+
   .matching-hints__examples {
     grid-template-columns: 1fr;
     gap: 24px;

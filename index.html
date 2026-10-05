@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#2d3233">
     <title>Тарификатор — онлайн-программа для управления нагрузкой</title>
     <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="css/styles.css?v=62">
+    <link rel="stylesheet" href="css/styles.css?v=63">
   </head>
   <body>
     <header class="hero" aria-labelledby="hero-title">
@@ -331,6 +331,7 @@
       }
 
       const sectionNav = document.querySelector('.section-nav');
+      const mobileNavigation = matchMedia('(max-width: 800px)');
       const developerSection = document.querySelector('.developer');
       const navTrack = document.querySelector('.section-nav__track');
       const navIndicator = document.querySelector('.section-nav__indicator');
@@ -366,7 +367,7 @@
         const threshold = 160;
         let active = null;
 
-        const ending = developerSection.getBoundingClientRect().top <= 180;
+        const ending = !mobileNavigation.matches && developerSection.getBoundingClientRect().top <= 180;
         sectionNav.classList.toggle('is-ending', ending);
         sectionNav.inert = ending;
 
