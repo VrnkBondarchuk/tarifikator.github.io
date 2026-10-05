@@ -575,11 +575,6 @@ section[id] {
   margin: 32px 0 0;
 }
 
-.statements__heading {
-  font-size: clamp(20px, 5.6vw, 42px);
-  white-space: nowrap;
-}
-
 .statements__illustration img {
   width: 100%;
   height: auto;
