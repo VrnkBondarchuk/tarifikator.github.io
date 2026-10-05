@@ -1057,6 +1057,14 @@ a:hover {
 }
 
 @media (max-width: 800px) {
+  .section-heading {
+    font-size: 36px;
+  }
+
+  .hero__title {
+    font-size: calc(var(--hero-title-size) * 0.9);
+  }
+
   .page-content {
     padding-inline: 16px;
   }
