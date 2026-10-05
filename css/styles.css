@@ -1057,6 +1057,11 @@ a:hover {
 }
 
 @media (max-width: 800px) {
+  .matching-hints__examples {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
   .section-heading {
     font-size: 36px;
   }
