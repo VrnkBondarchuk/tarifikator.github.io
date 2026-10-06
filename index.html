@@ -4,9 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#2d3233">
-    <title>Тарификатор — онлайн-программа для управления нагрузкой</title>
+    <title>Тарификатор</title>
+    <meta name="description" content="Тарификатор — онлайн-программа для тарификации и комплектования в школе. Помогает директорам распределять нагрузку между педагогами, обновлять учебные часы, готовить ведомости и финансовые отчёты для бухгалтерии.">
     <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="css/styles.css?v=77">
+  <link rel="stylesheet" href="css/styles.css?v=94">
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="Тарификатор" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
   </head>
   <body>
     <header class="hero" aria-labelledby="hero-title">
@@ -81,7 +88,12 @@
 
       <section class="overview-media" aria-label="Пример работы сервиса">
         <figure class="overview-media__inner">
-          <img class="overview-media__preview" src="assets/study-plans-demo-preview.png" width="1908" height="1030" alt="Превью демонстрации раздела «Учебные планы»">
+          <div class="overview-media__video">
+            <a class="overview-media__play" href="https://kinescope.io/0uK8UQ3EjfpHTr2yNQrrjG" aria-label="Смотреть видеодемонстрацию работы Тарификатора">
+              <img class="overview-media__preview" src="assets/how-it-works-video-thumbnail.png" width="2862" height="1545" alt="">
+              <img class="overview-media__play-button" src="assets/video-play-button.svg" width="120" height="120" alt="" aria-hidden="true">
+            </a>
+          </div>
           <figcaption class="caption overview-media__caption">Пример работы сервиса: как директору назначить нагрузку и выгрузить данные для отчёта</figcaption>
         </figure>
       </section>
@@ -261,7 +273,7 @@
             </div>
             <div class="faq__item section-copy">
               <h3>Сколько стоит сервис?</h3>
-              <p>Первый месяц — бесплатно. Если захочется продлить доступ, следующие 12 месяцев будут стоить 5000 рублей: это льготная цена для первых испытателей сервиса. Для знакомства с программой оставьте <a href="#demo-request">заявку на бесплатный демо-кабинет</a>.</p>
+              <p>Первый месяц — бесплатно. Если захочется продлить доступ, следующие 12 месяцев будут стоить 5000 рублей: это льготная цена для первых испытателей сервиса. Для знакомства с программой оставьте <a href="#demo-request">заявку на бесплатный демо-кабинет</a><span class="faq__link-period">.</span></p>
             </div>
           </div>
         </div>
@@ -286,14 +298,21 @@
                 </div>
                 <div class="demo__consents">
                   <div class="demo__consent-group">
-                    <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent" required aria-describedby="demo-consent-error"><span>Соглашаюсь <u>на обработку персональных данных</u> в соответствии <u>с политикой конфиденциальности</u></span></label>
+                    <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent" required aria-describedby="demo-consent-error"><span>Соглашаюсь <a href="files/consent.pdf" target="_blank" rel="noopener">на обработку персональных данных</a> в соответствии <a href="files/privacy-policy.pdf" target="_blank" rel="noopener">с политикой конфиденциальности</a></span></label>
                     <span class="demo__consent-error" id="demo-consent-error" aria-live="polite"></span>
                   </div>
-                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Соглашаюсь получать <u>рекламу</u> на почту</span></label>
+                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Соглашаюсь получать рекламу на почту</span></label>
                 </div>
-                <button class="demo__button" type="submit">Получить доступ</button>
+                <button class="demo__button" type="submit"><img class="demo__spinner" src="assets/demo-loader.svg" width="20" height="20" alt="" hidden><span>Получить доступ</span></button>
                 <p class="demo__result" role="status" aria-live="polite"></p>
               </form>
+              <div class="demo__success" role="status" aria-live="polite" hidden>
+                <img class="demo__success-icon" src="assets/demo-success-check.svg" width="82" height="85" alt="">
+                <div class="demo__success-copy">
+                  <h3>Доступ отправлен на почту</h3>
+                  <p>Письмо со ссылкой на демо-кабинет и данными для входа отправлено. Если его нет во входящих, проверьте папку «Спам».</p>
+                </div>
+              </div>
             </div>
             <img class="demo__image" src="assets/demo-school-dashboard.png" width="1804" height="875" alt="Демо-кабинет школы № 25: панель с данными о педагогах, классах и нагрузке">
           </div>
@@ -313,9 +332,9 @@
       <div class="site-footer__inner">
         <div class="site-footer__top">
           <div class="site-footer__legal">
-            <span>Политика конфиденциальности</span>
-            <span>Согласие на обработку данных</span>
-            <span>Обработка файлов cookie</span>
+            <a href="files/privacy-policy.pdf">Политика конфиденциальности</a>
+            <a href="files/consent.pdf">Согласие на обработку данных</a>
+            <a href="files/cookie.pdf">Обработка файлов cookie</a>
           </div>
           <div class="site-footer__resources">
             <a href="https://vk.ru/@tarifikator">Видеоуроки во Вконтакте</a>
@@ -329,8 +348,31 @@
       </div>
     </footer>
     </div>
-    <script src="assets/demo-form.js?v=8" defer></script>
+    <aside class="analytics-consent" id="analytics-consent" aria-label="Настройки аналитики" hidden>
+      <div class="analytics-consent__inner">
+        <p>Яндекс Метрика помогает понять, как пользуются сайтом. Она использует cookie и собирает сведения о посещениях. Разрешить аналитику?</p>
+        <div class="analytics-consent__actions">
+          <button class="analytics-consent__allow" type="button" data-analytics-choice="allow">Разрешить аналитику</button>
+          <button class="analytics-consent__deny" type="button" data-analytics-choice="deny">Не разрешать</button>
+        </div>
+      </div>
+    </aside>
+    <script src="assets/analytics-consent.js?v=3" data-metrika-id="113502031" defer></script>
+    <script src="assets/demo-form.js?v=9" defer></script>
     <script>
+
+      document.querySelector('.overview-media__play').addEventListener('click', event => {
+        event.preventDefault();
+        const player = document.createElement('iframe');
+        player.className = 'overview-media__player';
+        player.src = 'https://kinescope.io/embed/0uK8UQ3EjfpHTr2yNQrrjG?autoplay=1&playsinline=1';
+        player.title = 'Видеодемонстрация работы Тарификатора';
+        player.allow = 'autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock';
+        player.allowFullscreen = true;
+        event.currentTarget.replaceWith(player);
+        player.focus();
+      });
+
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduceMotion) {
         document.documentElement.style.scrollBehavior = 'smooth';
@@ -370,7 +412,7 @@
       }
 
       function updateActiveSection() {
-        const threshold = 160;
+        const threshold = 180;
         let active = null;
 
         const ending = !mobileNavigation.matches && developerSection.getBoundingClientRect().top <= 180;
