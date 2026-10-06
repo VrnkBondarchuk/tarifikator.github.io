@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#2d3233">
     <title>Тарификатор — онлайн-программа для управления нагрузкой</title>
     <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="css/styles.css?v=67">
+    <link rel="stylesheet" href="css/styles.css?v=77">
   </head>
   <body>
     <header class="hero" aria-labelledby="hero-title">
@@ -278,16 +278,21 @@
                   <p>Ссылку на демо отправим почтой. Если захотите проверить сервис на данных своей школы, заключим договор и настроим бесплатный доступ на месяц.</p>
                 </div>
               </div>
-              <form class="demo__form" aria-label="Получить доступ к демо-кабинету">
+              <form class="demo__form" aria-label="Получить доступ к демо-кабинету" novalidate>
                 <div class="demo__field">
                   <label class="demo__field-label" for="demo-email">Эл. почта</label>
-                  <input class="demo__email" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email">
-                  <button class="demo__button" type="button">Получить доступ</button>
+                  <input class="demo__email" id="demo-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required aria-describedby="demo-email-error">
+                  <span class="demo__message" id="demo-email-error" aria-live="polite"></span>
                 </div>
                 <div class="demo__consents">
-                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent"><span>Соглашаюсь <u>на обработку персональных данных</u> в соответствии <u>с политикой конфиденциальности</u></span></label>
+                  <div class="demo__consent-group">
+                    <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent" required aria-describedby="demo-consent-error"><span>Соглашаюсь <u>на обработку персональных данных</u> в соответствии <u>с политикой конфиденциальности</u></span></label>
+                    <span class="demo__consent-error" id="demo-consent-error" aria-live="polite"></span>
+                  </div>
                   <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Соглашаюсь получать <u>рекламу</u> на почту</span></label>
                 </div>
+                <button class="demo__button" type="submit">Получить доступ</button>
+                <p class="demo__result" role="status" aria-live="polite"></p>
               </form>
             </div>
             <img class="demo__image" src="assets/demo-school-dashboard.png" width="1804" height="875" alt="Демо-кабинет школы № 25: панель с данными о педагогах, классах и нагрузке">
@@ -324,6 +329,7 @@
       </div>
     </footer>
     </div>
+    <script src="assets/demo-form.js?v=8" defer></script>
     <script>
       const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (!reduceMotion) {

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Заявки на демо — Тарификатор</title>
+  <style>
+    body { font: 16px/1.4 system-ui,sans-serif; margin: 24px; color: #20292b; }
+    input,select,button { font: inherit; padding: 6px 8px; }
+    form { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+    label { display: grid; gap: 4px; }
+    table { border-collapse: collapse; width: 100%; }
+    th,td { border: 1px solid #ccd3d4; padding: 8px; text-align: left; vertical-align: top; }
+    th { background: #e8eeee; }
+    .table-wrap { overflow-x: auto; }
+    small { color: #596467; }
+  </style>
+</head>
+<body>
+  <h1>Заявки на демодоступ</h1>
+  <p>Статус «triggered» означает, что Unisender принял запуск сценария, а не доставку письма. Статус «review» означает неопределённый исход; перед повтором проверьте статистику сценария.</p>
+  <form id="filters">
+    <label>Почта <input name="email" type="search"></label>
+    <label>Согласие на рассылку <select name="consent"><option value="">Все</option><option value="1">Да</option><option value="0">Нет</option></select></label>
+    <label>С даты <input name="from" type="date"></label>
+    <label>По дату <input name="to" type="date"></label>
+    <label>Сценарий письма <select name="mailStatus"><option value="">Любой статус</option><option>pending</option><option>sending</option><option>triggered</option><option>sent</option><option>retry</option><option>review</option><option>failed</option></select></label>
+    <label>Рассылка <select name="marketingStatus"><option value="">Любой статус</option><option>not_requested</option><option>pending</option><option>sending</option><option>synced</option><option>skipped_unsubscribed</option><option>retry</option><option>failed</option></select></label>
+    <button type="submit">Найти</button>
+    <a href="/api/admin/requests.csv">Скачать CSV</a>
+  </form>
+  <p id="message" role="status"></p>
+  <div class="table-wrap"><table><thead><tr><th>Дата</th><th>Email</th><th>Обработка данных</th><th>Рассылка</th><th>Сценарий письма</th><th>Статус рассылки</th><th>Действия</th></tr></thead><tbody id="rows"></tbody></table></div>
+  <button id="more" type="button" hidden>Ещё</button>
+  <script>
+    const form = document.querySelector('#filters');
+    const rows = document.querySelector('#rows');
+    const message = document.querySelector('#message');
+    const more = document.querySelector('#more');
+    let offset = 0;
+    function cell(value) { const td = document.createElement('td'); td.textContent = String(value ?? ''); return td; }
+    async function load(append = false) {
+      if (!append) { offset = 0; rows.replaceChildren(); }
+      const params = new URLSearchParams(new FormData(form));
+      params.set('offset', offset);
+      try {
+        const response = await fetch('/api/admin/requests?' + params);
+        if (!response.ok) throw new Error('Не удалось получить заявки');
+        const data = await response.json();
+        for (const item of data) {
+          const tr = document.createElement('tr');
+          tr.append(cell(new Date(item.created_at).toLocaleString('ru-RU')), cell(item.email), cell(item.personal_data_consent ? 'Да' : 'Нет'), cell(item.marketing_consent ? 'Да' : 'Нет'));
+          tr.append(cell(`${item.mail_status}${item.mail_error ? ' · ' + item.mail_error : ''}`));
+          tr.append(cell(`${item.marketing_status}${item.marketing_error ? ' · ' + item.marketing_error : ''}`));
+          const actions = document.createElement('td');
+          for (const target of ['mail', 'marketing']) {
+            const status = item[target === 'mail' ? 'mail_status' : 'marketing_status'];
+            if (!['failed', 'review', 'sending'].includes(status)) continue;
+            const button = document.createElement('button');
+            button.textContent = target === 'mail' ? 'Повторить сценарий' : 'Повторить подписку';
+            button.addEventListener('click', async () => {
+              if (target === 'mail' && !confirm('Проверьте в Unisender, что сценарий не запускался и письмо не было отправлено. Повторить?')) return;
+              const response = await fetch(`/api/admin/requests/${item.id}/retry?target=${target}`, { method: 'POST' });
+              message.textContent = response.ok ? 'Поставлено в очередь' : 'Повтор не выполнен';
+              load();
+            });
+            actions.append(button, ' ');
+          }
+          tr.append(actions); rows.append(tr);
+        }
+        offset += data.length;
+        more.hidden = data.length < 100;
+        message.textContent = data.length ? '' : 'Заявок нет';
+      } catch (error) { message.textContent = error.message; }
+    }
+    form.addEventListener('submit', event => { event.preventDefault(); load(); });
+    more.addEventListener('click', () => load(true));
+    load();
+  </script>
+</body>
+</html>
