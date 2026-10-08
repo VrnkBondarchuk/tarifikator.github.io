@@ -6,7 +6,8 @@ import { randomUUID, timingSafeEqual } from 'node:crypto';
 import { DatabaseSync } from 'node:sqlite';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const port = Number(process.env.PORT || 3000);
+const port = Number(process.env.APP_PORT || process.env.PORT || 3000);
+const host = process.env.APP_IP || '0.0.0.0';
 const origin = process.env.PUBLIC_ORIGIN;
 const unisenderBase = process.env.NODE_ENV === 'test' && process.env.UNISENDER_API_BASE
   ? process.env.UNISENDER_API_BASE : 'https://api.unisender.com/ru/api';
@@ -15,6 +16,7 @@ const required = ['PUBLIC_ORIGIN', 'ADMIN_USERNAME', 'ADMIN_PASSWORD', 'UNISENDE
 const missing = required.filter(name => !process.env[name]);
 if (missing.length) throw new Error(`Missing configuration: ${missing.join(', ')}`);
 if (!/^https:\/\//.test(origin) && !/^http:\/\/localhost(?::\d+)?$/.test(origin)) throw new Error('PUBLIC_ORIGIN must be HTTPS (localhost excepted)');
+const publicOrigin = new URL(origin).origin;
 const triggerUrl = new URL(process.env.UNISENDER_TRIGGER_URL);
 const localTrigger = process.env.NODE_ENV === 'test' && triggerUrl.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(triggerUrl.hostname);
 if ((!localTrigger && (triggerUrl.protocol !== 'https:' || !['api.unisender.ru', 'api.unisender.com'].includes(triggerUrl.hostname))) || triggerUrl.username || triggerUrl.password) {
@@ -48,11 +50,15 @@ const due = db.prepare(`SELECT * FROM requests WHERE (mail_status IN ('pending',
 const record = db.prepare('SELECT * FROM requests WHERE id=?');
 const updateMail = db.prepare('UPDATE requests SET mail_status=?,mail_attempts=?,next_mail_at=?,mail_operation_id=?,mail_error=? WHERE id=?');
 const updateMarketing = db.prepare('UPDATE requests SET marketing_status=?,marketing_attempts=?,next_marketing_at=?,marketing_operation_id=?,marketing_error=? WHERE id=?');
-const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.ttf': 'font/ttf' };
+const mime = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.ico': 'image/x-icon', '.webmanifest': 'application/manifest+json', '.ttf': 'font/ttf', '.pdf': 'application/pdf' };
 
 function json(res, status, data, headers = {}) {
   res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', ...headers });
   res.end(JSON.stringify(data));
+}
+function seoFile(req, res, type, body) {
+  res.writeHead(200, { 'Content-Type': type, 'X-Content-Type-Options': 'nosniff' });
+  res.end(req.method === 'HEAD' ? undefined : body);
 }
 function isEmail(value) {
   return typeof value === 'string' && value.length <= 254 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/u.test(value);
@@ -215,6 +221,7 @@ const server = http.createServer(async (req, res) => {
       return;
     }
     if (url.pathname.startsWith('/api/admin/') || url.pathname === '/admin') {
+      res.setHeader('X-Robots-Tag', 'noindex, nofollow');
       if (!admin(req, res)) return;
       if (req.method === 'GET' && url.pathname === '/admin') return serveFile(req, res, 'admin.html');
       if (req.method === 'GET' && url.pathname === '/api/admin/requests') return json(res, 200, rows(url.searchParams));
@@ -240,12 +247,18 @@ const server = http.createServer(async (req, res) => {
       return json(res, 404, { error: 'not_found' });
     }
     if (req.method !== 'GET' && req.method !== 'HEAD') return json(res, 405, { error: 'method' });
+    if (url.pathname === '/robots.txt') {
+      return seoFile(req, res, 'text/plain; charset=utf-8', `User-agent: *\nAllow: /\nSitemap: ${publicOrigin}/sitemap.xml\n`);
+    }
+    if (url.pathname === '/sitemap.xml') {
+      return seoFile(req, res, 'application/xml; charset=utf-8', `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${publicOrigin}/</loc></url>\n</urlset>\n`);
+    }
     if (url.pathname === '/') return serveFile(req, res, 'index.html');
-    if (/^\/(assets|css|fonts)\/[a-zA-Z0-9._/-]+$/.test(url.pathname) && !url.pathname.includes('..')) return serveFile(req, res, url.pathname.slice(1));
+    if (/^\/(assets|css|fonts|files|favicon)\/[a-zA-Z0-9._/-]+$/.test(url.pathname) && !url.pathname.includes('..')) return serveFile(req, res, url.pathname.slice(1));
     return json(res, 404, { error: 'not_found' });
   } catch (error) {
     console.error('Request failure:', error.message);
     if (!res.headersSent) json(res, 500, { error: 'server' });
   }
 });
-server.listen(port, () => console.log(`Tarifikator listening on ${port}`));
+server.listen(port, host, () => console.log(`Tarifikator listening on ${host}:${port}`));

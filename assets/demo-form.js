@@ -6,11 +6,27 @@ const demoButton = demoForm.querySelector('button[type="submit"]');
 const demoError = demoForm.querySelector('#demo-email-error');
 const consentError = demoForm.querySelector('#demo-consent-error');
 const demoResult = demoForm.querySelector('.demo__result');
+const demoPanel = demoForm.closest('.demo__panel');
+const demoSpinner = demoButton.querySelector('.demo__spinner');
+const demoSuccess = demoPanel.querySelector('.demo__success');
 let sending = false;
 let cooldownUntil = 0;
 let cooldownEmail = '';
-let cooldownMessage = '';
 let cooldownTimer;
+
+function setState(state) {
+  demoForm.dataset.state = state;
+  demoPanel.dataset.state = state;
+  demoForm.setAttribute('aria-busy', String(state === 'loading'));
+  demoEmail.disabled = state === 'loading';
+  personalDataConsent.disabled = state === 'loading';
+  demoConsent.disabled = state === 'loading';
+  demoSpinner.hidden = state !== 'loading';
+  if (state === 'loading') demoButton.setAttribute('aria-label', 'Отправка заявки');
+  else demoButton.removeAttribute('aria-label');
+  demoForm.hidden = state === 'success';
+  demoSuccess.hidden = state !== 'success';
+}
 
 function clearEmailError() {
   demoError.replaceChildren();
@@ -34,21 +50,27 @@ function showCooldown() {
   if (seconds <= 0) {
     clearInterval(cooldownTimer);
     cooldownTimer = undefined;
-    demoResult.textContent = demoEmail.value.trim().toLowerCase() === cooldownEmail ? cooldownMessage : '';
+    demoResult.textContent = '';
+    setState('idle');
     updateButton();
     return;
   }
   demoResult.textContent = demoEmail.value.trim().toLowerCase() === cooldownEmail
-    ? `${cooldownMessage ? cooldownMessage + ' ' : ''}Повторить для этого адреса можно через ${seconds} сек.` : '';
+    ? `Повторить для этого адреса можно через ${seconds} сек.` : '';
+  if (demoResult.textContent) setState('error');
   updateButton();
 }
-function startCooldown(message, seconds) {
+function startCooldown(seconds) {
   cooldownEmail = demoEmail.value.trim().toLowerCase();
   cooldownUntil = Date.now() + seconds * 1000;
-  cooldownMessage = message;
   clearInterval(cooldownTimer);
   showCooldown();
   cooldownTimer = setInterval(showCooldown, 1000);
+}
+
+function showSubmitError() {
+  demoResult.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз.';
+  setState('error');
 }
 
 function validEmail() {
@@ -59,7 +81,6 @@ function updateButton() {
   const coolingDown = demoEmail.value.trim().toLowerCase() === cooldownEmail && Date.now() < cooldownUntil;
   demoButton.disabled = sending || coolingDown;
   demoButton.setAttribute('aria-disabled', String(demoButton.disabled));
-  demoButton.textContent = sending ? 'Отправляем…' : 'Получить доступ';
 }
 personalDataConsent.addEventListener('change', () => {
   if (personalDataConsent.checked) clearConsentError();
@@ -67,6 +88,7 @@ personalDataConsent.addEventListener('change', () => {
 demoEmail.addEventListener('input', () => {
   clearEmailError();
   demoResult.textContent = '';
+  if (!sending) setState('idle');
   if (cooldownUntil > Date.now()) showCooldown();
   updateButton();
 });
@@ -76,6 +98,8 @@ demoEmail.addEventListener('focus', () => {
 demoForm.addEventListener('submit', async event => {
   event.preventDefault();
   if (sending) return;
+  demoResult.textContent = '';
+  setState('idle');
   const emailIsValid = validEmail();
   if (!emailIsValid && document.activeElement !== demoEmail) showEmailError();
   if (!personalDataConsent.checked) showConsentError();
@@ -84,7 +108,7 @@ demoForm.addEventListener('submit', async event => {
   sending = true;
   clearEmailError();
   clearConsentError();
-  demoResult.textContent = '';
+  setState('loading');
   updateButton();
   try {
     const response = await fetch('/api/demo-requests', {
@@ -94,21 +118,24 @@ demoForm.addEventListener('submit', async event => {
     let result = {};
     try { result = await response.json(); } catch {}
     if (response.status === 202) {
-      startCooldown('Заявка принята. Письмо с доступом придёт на указанную почту в ближайшие минуты.', 60);
+      setState('success');
     } else if (response.status === 429) {
       const seconds = Math.max(1, Number(result.retryAfter) || 60);
-      startCooldown('', seconds);
+      startCooldown(seconds);
     } else if (response.status === 422) {
+      setState('idle');
       if (result.error === 'consent_required') showConsentError();
       else if (document.activeElement !== demoEmail) showEmailError();
     } else {
-      demoResult.textContent = 'Не удалось отправить заявку. Попробуйте ещё раз.';
+      showSubmitError();
     }
   } catch {
-    demoResult.textContent = 'Нет связи с сервером. Попробуйте ещё раз.';
+    showSubmitError();
   } finally {
     sending = false;
+    if (demoForm.dataset.state === 'loading') setState('idle');
     updateButton();
   }
 });
+setState('idle');
 updateButton();

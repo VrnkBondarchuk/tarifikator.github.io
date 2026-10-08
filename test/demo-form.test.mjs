@@ -49,10 +49,42 @@ test('demo requests persist, mail is separate from optional marketing consent, a
       UNISENDER_API_BASE: `http://127.0.0.1:${apiPort}`,
       UNISENDER_API_KEY: 'test', UNISENDER_TRIGGER_URL: `http://127.0.0.1:${apiPort}/triggerBlock/test`,
       UNISENDER_MARKETING_LIST_ID: '3',
-      CONSENT_VERSION: 'test-v1' }, stdio: 'ignore'
+      CONSENT_VERSION: 'test-v1' }, stdio: ['ignore', 'ignore', 'pipe']
   });
+  let childError = '';
+  child.stderr.on('data', chunk => { childError += chunk; });
+  let completed = false;
   try {
-    await eventually(async () => (await fetch(origin)).ok);
+    try { await eventually(async () => (await fetch(origin)).ok); }
+    catch (error) { throw new Error(`${error.message}: ${childError.trim()}`); }
+    const page = await fetch(origin);
+    const html = await page.text();
+    assert.match(html, /<title>Тарификатор<\/title>/);
+    assert.ok(html.includes('<meta name="description" content="Тарификатор — онлайн-программа для тарификации и комплектования в школе. Помогает директорам распределять нагрузку между педагогами, обновлять учебные часы, готовить ведомости и финансовые отчёты для бухгалтерии.">'));
+    assert.equal(page.headers.get('x-robots-tag'), null);
+    const favicon = await fetch(origin + '/favicon/favicon.svg');
+    assert.equal(favicon.status, 200);
+    assert.equal(favicon.headers.get('content-type'), 'image/svg+xml');
+    const manifest = await fetch(origin + '/favicon/site.webmanifest');
+    assert.equal(manifest.status, 200);
+    assert.equal(manifest.headers.get('content-type'), 'application/manifest+json');
+    const robots = await fetch(origin + '/robots.txt');
+    assert.equal(robots.status, 200);
+    assert.match(robots.headers.get('content-type'), /^text\/plain; charset=utf-8$/);
+    assert.equal(await robots.text(), `User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
+    const sitemap = await fetch(origin + '/sitemap.xml');
+    assert.equal(sitemap.status, 200);
+    assert.match(sitemap.headers.get('content-type'), /^application\/xml; charset=utf-8$/);
+    const xml = await sitemap.text();
+    assert.match(xml, /<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
+    assert.ok(xml.includes(`<loc>${origin}/</loc>`));
+    assert.equal((xml.match(/<loc>/g) || []).length, 1);
+    const robotsHead = await fetch(origin + '/robots.txt', { method: 'HEAD' });
+    assert.equal(robotsHead.status, 200);
+    assert.equal(await robotsHead.text(), '');
+    const sitemapHead = await fetch(origin + '/sitemap.xml', { method: 'HEAD' });
+    assert.equal(sitemapHead.status, 200);
+    assert.equal(await sitemapHead.text(), '');
     const post = (email, marketingConsent, personalDataConsent = true) => fetch(origin + '/api/demo-requests', {
       method: 'POST', headers: { Origin: origin, 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, marketingConsent, personalDataConsent })
@@ -65,12 +97,20 @@ test('demo requests persist, mail is separate from optional marketing consent, a
     assert.equal(calls.filter(call => call.method === 'subscribe').length, 0);
     const unauthorized = await fetch(origin + '/api/admin/requests');
     assert.equal(unauthorized.status, 401);
+    assert.equal(unauthorized.headers.get('x-robots-tag'), 'noindex, nofollow');
+    const adminPage = await fetch(origin + '/admin');
+    assert.equal(adminPage.status, 401);
+    assert.equal(adminPage.headers.get('x-robots-tag'), 'noindex, nofollow');
     await new Promise(resolve => setTimeout(resolve, 3100));
     assert.equal((await post('second@example.test', true)).status, 202);
     await eventually(() => calls.some(call => call.method === 'subscribe'));
     const auth = { Authorization: 'Basic ' + Buffer.from('admin:test-password').toString('base64') };
+    const authorizedAdminPage = await fetch(origin + '/admin', { headers: auth });
+    assert.equal(authorizedAdminPage.status, 200);
+    assert.equal(authorizedAdminPage.headers.get('x-robots-tag'), 'noindex, nofollow');
     const list = await fetch(origin + '/api/admin/requests', { headers: auth });
     assert.equal(list.status, 200);
+    assert.equal(list.headers.get('x-robots-tag'), 'noindex, nofollow');
     const rows = await list.json();
     assert.equal(rows.length, 2);
     assert.deepEqual(rows.map(row => row.personal_data_consent), [1, 1]);
@@ -87,12 +127,13 @@ test('demo requests persist, mail is separate from optional marketing consent, a
       const [item] = await response.json();
       return item?.mail_status === 'failed' && item.mail_error === 'trigger_invalid_arg';
     });
+    completed = true;
   } finally {
     child.kill();
     await new Promise(resolve => child.once('exit', resolve));
     await new Promise(resolve => mock.close(resolve));
     const db = new DatabaseSync(path.join(dir, 'requests.sqlite'));
-    assert.equal(db.prepare('SELECT count(*) AS count FROM requests').get().count, 3);
+    if (completed) assert.equal(db.prepare('SELECT count(*) AS count FROM requests').get().count, 3);
     db.close();
     await rm(dir, { recursive: true, force: true });
   }
