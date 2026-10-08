@@ -412,7 +412,7 @@ section[id] {
   letter-spacing: -0.01em;
   white-space: nowrap;
   text-decoration: underline;
-  text-decoration-color: rgb(67 97 238 / 30%);
+  text-decoration-color: rgb(67 97 238 / 20%);
   text-decoration-thickness: 0.5px;
 }
 
