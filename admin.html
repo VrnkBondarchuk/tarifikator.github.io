@@ -69,7 +69,8 @@
       </div>
     </section>
   </main>
-  <script>
+  <script type="module">
+    import { localDateRange } from './assets/admin-dates.js';
     const form = document.querySelector('#filters');
     const rows = document.querySelector('#rows');
     const message = document.querySelector('#message');
@@ -107,12 +108,21 @@
       return td;
     }
     async function load(append = false) {
+      const params = new URLSearchParams(new FormData(form));
+      try {
+        const dates = localDateRange(params.get('from'), params.get('to'));
+        params.set('from', dates.from);
+        params.set('to', dates.to);
+      } catch (error) {
+        message.textContent = error.message;
+        return;
+      }
       if (!append) { offset = 0; rows.replaceChildren(); shownCount.textContent = ''; more.hidden = true; }
       message.textContent = append ? 'Загружаем ещё заявки…' : 'Загружаем заявки…';
-      const params = new URLSearchParams(new FormData(form));
       params.set('offset', offset);
       try {
         const response = await fetch('/api/admin/requests?' + params);
+        if (response.status === 400) throw new Error('Проверьте выбранный диапазон дат.');
         if (!response.ok) throw new Error('Не удалось получить заявки');
         const data = await response.json();
         for (const item of data) {

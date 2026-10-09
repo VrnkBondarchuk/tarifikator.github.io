@@ -7,7 +7,7 @@
     <title>Тарификатор</title>
     <meta name="description" content="Тарификатор — онлайн-программа для тарификации и комплектования в школе. Помогает директорам распределять нагрузку между педагогами, обновлять учебные часы, готовить ведомости и финансовые отчёты для бухгалтерии.">
     <link rel="preload" href="fonts/Onest-Variable.ttf" as="font" type="font/ttf" crossorigin>
-    <link rel="stylesheet" href="css/styles.css?v=120">
+    <link rel="stylesheet" href="css/styles.css?v=137">
     <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
     <link rel="shortcut icon" href="favicon/favicon.ico">
@@ -29,7 +29,10 @@
 
         <div class="hero__showcase">
           <div class="hero__visuals">
-            <img class="hero__preview-arrow" src="assets/dashboard-to-report-arrow.svg?v=20261008" alt="" aria-hidden="true">
+            <picture class="hero__preview-arrow" aria-hidden="true">
+              <source media="(max-width: 600px)" srcset="assets/dashboard-to-report-arrow-mobile.svg">
+              <img src="assets/dashboard-to-report-arrow.svg?v=20261008-2" alt="">
+            </picture>
             <div class="hero__workload-visual">
               <div class="hero__workload-card">
                 <img class="hero__workload-image" src="assets/workload-dashboard-content.png?v=20261008" width="3379" height="1944" alt="Экран Тарификатора со сводкой нагрузки по учителям, классам и предметам">
@@ -40,8 +43,8 @@
                 <img src="assets/summary-statement-27-hours-ivanov.png?v=20261008" width="2009" height="2720" alt="Сводная ведомость с распределением часов по предметам и классам">
               </div>
               <div class="hero__print-callout" aria-hidden="true">
-                <img class="hero__arrowhead" src="assets/print-callout-arrowhead.svg?v=20261008" alt="">
-                <img class="hero__arrow-stem" src="assets/print-callout-arrow-stem.svg?v=20261008" alt="">
+                <img class="hero__arrowhead" src="assets/print-callout-arrowhead.svg?v=20261008-3" alt="">
+                <img class="hero__arrow-stem" src="assets/print-callout-arrow-stem.svg?v=20261008-3" alt="">
                 <span class="hero__print-label">Печать</span>
               </div>
             </div>
@@ -64,7 +67,8 @@
       <main>
         <section class="overview" aria-labelledby="overview-title">
           <h2 class="section-heading" id="overview-title">Как это работает</h2>
-          <p class="section-copy">«Тарификатор» — сервис для управления нагрузкой в школе. Он помогает сдавать тарификацию без долгих перепроверок и обновлять нагрузку во время учебного года. Сотни педагогов, классов и предметов — всё в одном месте. Познакомьтесь с возможностями сервиса:</p>
+          <p class="section-copy">«Тарификатор» — сервис для управления нагрузкой в школе. Он помогает сдавать тарификацию без долгих перепроверок и обновлять нагрузку во время учебного года. Сотни педагогов, классов и предметов — всё в одном месте.</p>
+          <p class="section-copy">Познакомьтесь с возможностями сервиса:</p>
         </section>
         <div class="feature-sequence">
           <nav class="section-nav" aria-label="Разделы страницы">
@@ -276,7 +280,7 @@
                     <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="personal-data-consent" required aria-describedby="demo-consent-error"><span>Соглашаюсь <a href="files/consent.pdf" target="_blank" rel="noopener">на обработку персональных данных</a> в соответствии <a href="files/privacy-policy.pdf" target="_blank" rel="noopener">с политикой конфиденциальности</a></span></label>
                     <span class="demo__consent-error" id="demo-consent-error" aria-live="polite"></span>
                   </div>
-                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Соглашаюсь получать рекламу на почту</span></label>
+                  <label class="demo__consent"><input class="demo__checkbox" type="checkbox" name="marketing-consent"><span>Хочу получать письма о Тарификаторе</span></label>
                 </div>
                 <button class="demo__button" type="submit"><span class="demo__spinner" aria-hidden="true" hidden></span><span>Получить доступ</span></button>
                 <p class="demo__result" role="status" aria-live="polite"></p>
@@ -284,8 +288,8 @@
               <div class="demo__success" role="status" aria-live="polite" hidden>
                 <img class="demo__success-icon" src="assets/demo-success-check.svg" width="82" height="85" alt="">
                 <div class="demo__success-copy">
-                  <h3>Доступ отправлен на почту</h3>
-                  <p>Письмо со ссылкой на демо-кабинет и данными для входа отправлено. Если его нет во входящих, проверьте папку «Спам».</p>
+                  <h3>Заявка принята</h3>
+                  <p>Письмо со ссылкой на демо-кабинет и данными для входа скоро придёт на указанную почту. Если письма нет через несколько минут, проверьте папку «Спам».</p>
                 </div>
               </div>
             </div>
@@ -319,7 +323,7 @@
       </footer>
     </div>
     <aside class="analytics-consent" id="analytics-consent" aria-label="Настройки аналитики" hidden>
-      <p>Мы используем <a class="analytics-consent__link" href="files/cookie.pdf" target="_blank" rel="noopener">куки</a> на сайте</p>
+      <p>Пока вы на сайте, мы используем <a class="analytics-consent__link" href="files/cookie.pdf" target="_blank" rel="noopener">куки</a> и обрабатываем данные о его посещении</p>
       <button class="analytics-consent__allow" type="button">Окей</button>
     </aside>
     <script src="assets/demo-form.js?v=9" defer></script>
